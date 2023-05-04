@@ -93,7 +93,7 @@ class linkedList {
   //represents your LinkedList objects as strings, so you can print them out and preview them in the console. The format should be: ( value ) -> ( value ) -> ( value ) -> null
   toString(list = "", linkedList = this.linkedList) {
     if (linkedList.nextNode === null) {
-      list += "null";
+      list += `(${linkedList.value}) -> null`;
       return list;
     } else {
       list += `(${linkedList.value}) -> `;
@@ -101,15 +101,37 @@ class linkedList {
     }
   }
 
-  //that inserts a new node with the provided value at the given index.
-  insertAt(value, index) {}
+  // remove head node
+  removeHead() {
+    let newHead = this.linkedList.nextNode;
+    this.linkedList = newHead;
+  }
 
-  remove(index, linkedList = this.linkedList, currentIndex = 0) {
-    // for the index given, remove it from the linked list if it exists
-    // first find the node just before the index
-    // then assign it to the node next to index effectively skipping
-    // the index node, in this way it is removed from the linked list
-    // (head) -> x(val)x -> (val) -> (val) -> null
+  // remove node at index from linked list
+  removeAt(index) {
+    let currentIndex = 0;
+    let linkedList = this.linkedList;
+
+    if (index !== 1) {
+      while (index - currentIndex !== 1) {
+        linkedList = linkedList.nextNode;
+        currentIndex++;
+      }
+    }
+
+    let nodeToRemove = linkedList.nextNode;
+    if (nodeToRemove.nextNode !== null) {
+      linkedList.nextNode = nodeToRemove.nextNode;
+      index === 1
+        ? (this.linkedList = linkedList)
+        : (this.linkedList.nextNode = linkedList);
+      return;
+    }
+
+    linkedList.nextNode = null;
+    index === 1
+      ? (this.linkedList = linkedList)
+      : (this.linkedList.nextNode = linkedList);
   }
 }
 
@@ -122,18 +144,24 @@ class Node {
 }
 
 const ll = new linkedList("value");
-ll.append("abc");
-ll.append("new");
-ll.append("hellooo");
+ll.append("A");
+ll.append("B");
+ll.append("C");
 ll.prepend("HEAD");
-ll.tail();
+//ll.tail();
 
 console.log(ll);
 
-console.log(ll.size());
-console.log(ll.head());
-console.log(ll.at(6));
+//console.log(ll.size());
+//console.log(ll.head());
+console.log(ll.toString());
+
+ll.removeAt(3);
+
+//ll.removeHead()
 
 console.log(ll.toString());
+
+//console.log(ll.insertAt("D", 2));
 
 //console.log(ll.shift());
