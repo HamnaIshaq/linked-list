@@ -207,7 +207,7 @@ const newLinkedList = new linkedList("HEAD");
 newLinkedList.append("A");
 newLinkedList.append("B");
 newLinkedList.append("C");
-newLinkedList.removeAt(1);
+//newLinkedList.removeAt(1);
 
 const linkedListDiv = document.querySelector(".linked-list");
 const linkedListSizeText = document.querySelector(".linked-list-size");
@@ -231,6 +231,7 @@ const findNodeAtValueInput = document.querySelector(
 const removeLastNodeBtn = document.querySelector(".remove-last-node-btn");
 const containsValueBtn = document.querySelector(".contains-value-btn");
 const containsValueInput = document.querySelector(".contains-value-input");
+/*
 const insertNewNodeAtBtn = document.querySelector(".insert-new-node-at-btn");
 const insertNewNodeValueInput = document.querySelector(
   ".insert-new-node-value-input"
@@ -240,6 +241,7 @@ const insertNewNodeIndexInput = document.querySelector(
 );
 const removeAtNodeBtn = document.querySelector(".remove-node-at-btn");
 const removeAtInput = document.querySelector(".remove-at-input");
+*/
 linkedListData();
 
 function linkedListData() {
@@ -281,6 +283,7 @@ containsValueBtn.addEventListener("click", function () {
   containsValueInput.value = "";
 });
 
+/*
 insertNewNodeAtBtn.addEventListener("click", function () {
   newLinkedList.insertAt(
     insertNewNodeValueInput.value,
@@ -296,6 +299,7 @@ removeAtNodeBtn.addEventListener("click", function () {
   linkedListData();
   removeAtInput.value = "";
 });
+*/
 
 //console.log(newLinkedList.toString());
 //newLinkedList.insertAt("D", 0);
