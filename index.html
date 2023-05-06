@@ -7,5 +7,78 @@
     <title>Linked list</title>
     <script defer src="./linkedList/index.js"></script>
   </head>
-  <body></body>
+  <body>
+    <div class="linked-list"></div>
+    <p>Size: <span class="linked-list-size">-</span></p>
+    <p>Current Head Value: <span class="linked-list-head"></span></p>
+    <p>Current Tail Value: <span class="linked-list-tail"></span></p>
+    <p>
+      Find node value at index:
+      <span class="linked-list-find-node-value-at-index"></span>
+    </p>
+    <p>Contains Value: <span class="linked-list-contains-value"></span></p>
+
+    <div>
+      <div>
+        <button type="button" class="append-node-btn">Append value</button>
+        <input
+          type="text"
+          class="append-node-value-input"
+          placeholder="value"
+        />
+      </div>
+
+      <div>
+        <button type="button" class="prepend-node-btn">Prepend value</button>
+        <input
+          type="text"
+          class="prepend-node-value-input"
+          placeholder="value"
+        />
+      </div>
+
+      <div>
+        <button type="button" class="find-node-at-btn">
+          Find node value at index
+        </button>
+        <input
+          type="text"
+          class="find-node-at-value-input"
+          placeholder="index"
+        />
+      </div>
+
+      <div>
+        <button type="button" class="remove-last-node-btn">
+          Remove last node
+        </button>
+      </div>
+
+      <div>
+        <button type="button" class="contains-value-btn">Contains Value</button>
+        <input type="text" class="contains-value-input" />
+      </div>
+
+      <div>
+        <button type="button" class="insert-new-node-at-btn">
+          Insert New Node
+        </button>
+        <input
+          type="text"
+          class="insert-new-node-value-input"
+          placeholder="value"
+        />
+        <input
+          type="text"
+          class="insert-new-node-index-input"
+          placeholder="index"
+        />
+      </div>
+
+      <div>
+        <button type="button" class="remove-node-at-btn">Remove Node At</button>
+        <input type="text" class="remove-at-input" placeholder="index" />
+      </div>
+    </div>
+  </body>
 </html>
