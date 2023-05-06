@@ -109,8 +109,14 @@ class linkedList {
 
   // remove node at index from linked list
   removeAt(index) {
+    const size = this.size();
     let currentIndex = 0;
     let linkedList = this.linkedList;
+
+    if (index > size) {
+      console.log("the lined list size is ", size);
+      return;
+    }
 
     if (index !== 1) {
       while (index - currentIndex !== 1) {
@@ -133,6 +139,49 @@ class linkedList {
       ? (this.linkedList = linkedList)
       : (this.linkedList.nextNode = linkedList);
   }
+
+  // insert a new node with the provided value at the given index
+  insertAt(value, index) {
+    const size = this.size();
+    let currentIndex = 0;
+    let linkedList = this.linkedList;
+    let newNodeToInsert = new Node(value);
+
+    if (index > size) {
+      const lastNode = this.tail();
+      lastNode.nextNode = newNodeToInsert;
+      return;
+    }
+
+    if (index === 0) {
+      newNodeToInsert.nextNode = linkedList;
+      this.linkedList = newNodeToInsert;
+      return;
+    }
+
+    if (index !== 1) {
+      while (index - currentIndex !== 1) {
+        linkedList = linkedList.nextNode;
+        currentIndex++;
+      }
+    }
+
+    let tempNode = linkedList.nextNode;
+    linkedList.nextNode = newNodeToInsert;
+    newNodeToInsert.nextNode = tempNode;
+
+    if (tempNode.nextNode !== null) {
+      index === 1
+        ? (this.linkedList = linkedList)
+        : (this.linkedList.nextNode = linkedList);
+      return;
+    }
+
+    linkedList.nextNode = null;
+    index === 1
+      ? (this.linkedList = linkedList)
+      : (this.linkedList.nextNode = linkedList);
+  }
 }
 
 // Node Class
@@ -143,25 +192,37 @@ class Node {
   }
 }
 
-const ll = new linkedList("value");
-ll.append("A");
-ll.append("B");
-ll.append("C");
-ll.prepend("HEAD");
-//ll.tail();
+// Visualize linked list functionality on DOM
 
-console.log(ll);
+const newLinkedList = new linkedList();
 
-//console.log(ll.size());
-//console.log(ll.head());
-console.log(ll.toString());
+//console.log(newLinkedList.toString());
+//newLinkedList.insertAt("D", 0);
+//console.log(newLinkedList);
+/*
+newLinkedList.insertAt("P", 9);
+console.log(newLinkedList);
+console.log(newLinkedList.toString());
+*/
+/*
 
-ll.removeAt(3);
+//newLinkedList.tail();
 
-//ll.removeHead()
+console.log(newLinkedList);
 
-console.log(ll.toString());
+//console.log(newLinkedList.size());
+//console.log(newLinkedList.head());
+console.log(newLinkedList.toString());
 
-//console.log(ll.insertAt("D", 2));
+newLinkedList.removeAt(3);
 
-//console.log(ll.shift());
+//newLinkedList.removeHead()
+
+console.log(newLinkedList.toString());
+
+newLinkedList.insertAt("D", 0)
+
+//console.log(newLinkedList.insertAt("D", 2));
+
+//console.log(newLinkedList.shift());
+*/
