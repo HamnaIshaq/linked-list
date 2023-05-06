@@ -7,7 +7,11 @@ class linkedList {
   }
 
   prepend(value) {
-    this.linkedList.value = value;
+    let newNodeToPrepend = new Node(value);
+    console.log(newNodeToPrepend.nextNode);
+    newNodeToPrepend.nextNode = this.linkedList;
+    console.log(newNodeToPrepend, this.linkedList);
+    this.linkedList = newNodeToPrepend;
   }
 
   append(value) {
@@ -118,6 +122,10 @@ class linkedList {
       return;
     }
 
+    if (index === 1) {
+      console.log("ajj");
+    }
+
     if (index !== 1) {
       while (index - currentIndex !== 1) {
         linkedList = linkedList.nextNode;
@@ -194,7 +202,100 @@ class Node {
 
 // Visualize linked list functionality on DOM
 
-const newLinkedList = new linkedList();
+const newLinkedList = new linkedList("HEAD");
+
+newLinkedList.append("A");
+newLinkedList.append("B");
+newLinkedList.append("C");
+newLinkedList.removeAt(1);
+
+const linkedListDiv = document.querySelector(".linked-list");
+const linkedListSizeText = document.querySelector(".linked-list-size");
+const linkedListHeadText = document.querySelector(".linked-list-head");
+const linkedListTailText = document.querySelector(".linked-list-tail");
+const linkedListFindNodeValueAtIndexText = document.querySelector(
+  ".linked-list-find-node-value-at-index"
+);
+const linkedListContainsValueText = document.querySelector(
+  ".linked-list-contains-value"
+);
+
+const appendValueBtn = document.querySelector(".append-node-btn");
+const appendValueInput = document.querySelector(".append-node-value-input");
+const prependValueBtn = document.querySelector(".prepend-node-btn");
+const prependValueInput = document.querySelector(".prepend-node-value-input");
+const findNodeAtBtn = document.querySelector(".find-node-at-btn");
+const findNodeAtValueInput = document.querySelector(
+  ".find-node-at-value-input"
+);
+const removeLastNodeBtn = document.querySelector(".remove-last-node-btn");
+const containsValueBtn = document.querySelector(".contains-value-btn");
+const containsValueInput = document.querySelector(".contains-value-input");
+const insertNewNodeAtBtn = document.querySelector(".insert-new-node-at-btn");
+const insertNewNodeValueInput = document.querySelector(
+  ".insert-new-node-value-input"
+);
+const insertNewNodeIndexInput = document.querySelector(
+  ".insert-new-node-index-input"
+);
+const removeAtNodeBtn = document.querySelector(".remove-node-at-btn");
+const removeAtInput = document.querySelector(".remove-at-input");
+linkedListData();
+
+function linkedListData() {
+  linkedListDiv.textContent = newLinkedList.toString();
+  linkedListSizeText.textContent = newLinkedList.size();
+  linkedListHeadText.textContent = "(" + newLinkedList.head().value + ")";
+  linkedListTailText.textContent = "(" + newLinkedList.tail().value + ")";
+}
+
+appendValueBtn.addEventListener("click", function () {
+  newLinkedList.append(appendValueInput.value);
+  linkedListData();
+  appendValueInput.value = "";
+});
+
+prependValueBtn.addEventListener("click", function () {
+  newLinkedList.prepend(prependValueInput.value);
+  linkedListData();
+  prependValueInput.value = "";
+});
+
+findNodeAtBtn.addEventListener("click", function () {
+  linkedListFindNodeValueAtIndexText.textContent = newLinkedList.find(
+    findNodeAtValueInput.value
+  );
+  findNodeAtValueInput.value = "";
+});
+
+removeLastNodeBtn.addEventListener("click", function () {
+  newLinkedList.pop();
+  linkedListData();
+});
+
+containsValueBtn.addEventListener("click", function () {
+  const containsValue =
+    newLinkedList.contains(containsValueInput.value) === true ? "YES" : "NO";
+  linkedListContainsValueText.textContent =
+    "Is value " + containsValueInput.value + " present? " + containsValue;
+  containsValueInput.value = "";
+});
+
+insertNewNodeAtBtn.addEventListener("click", function () {
+  newLinkedList.insertAt(
+    insertNewNodeValueInput.value,
+    insertNewNodeIndexInput.value
+  );
+  //linkedListData();
+  insertNewNodeValueInput.value = "";
+  insertNewNodeIndexInput.value = "";
+});
+
+removeAtNodeBtn.addEventListener("click", function () {
+  newLinkedList.removeAt(removeAtInput.value);
+  linkedListData();
+  removeAtInput.value = "";
+});
 
 //console.log(newLinkedList.toString());
 //newLinkedList.insertAt("D", 0);
